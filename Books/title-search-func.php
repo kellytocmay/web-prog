@@ -11,7 +11,7 @@
 
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-          echo "<p><i>$row[title]</i>.$row[author]($row[year]).</p>";
+          echo "<p><i>$row[title]</i>. $row[author] ($row[year]).</p>";
         }
       }
       else {
