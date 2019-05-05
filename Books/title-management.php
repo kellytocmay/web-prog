@@ -4,8 +4,8 @@
   require "title-delete-process.php";
   require "title-add-process.php";
   require "title-add-form.php";
-  require "title-list-delete-form.php";
-  require "edit-book-details.php"
+  require "title-list-form.php";
+  //require "edit-book-details.php"
 
   $query  = "SELECT * FROM classics";
   $result = $conn->query($query)
