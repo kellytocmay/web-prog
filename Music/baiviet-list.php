@@ -1,6 +1,5 @@
 <?php
   require 'data/connect-select-db.php';
-  require 'baiviet-delete.php';
   $sql = "SELECT ma_bviet, tieude, ten_tgia, ngayviet, ten_bhat, ten_tloai, tomtat FROM baiviet b JOIN theloai th ON b.ma_tloai = th.ma_tloai JOIN tacgia t ON b.ma_tgia = t.ma_tgia";
   $result = $conn->query($sql);
 
@@ -57,11 +56,7 @@
           ?>
         </td>
       </tr>
-      <?php
-      while ($row = $result->fetch_assoc()) {
-        del_form_gen($row);
-      }
-       ?>
+
       <hr>
       <?php
           }
