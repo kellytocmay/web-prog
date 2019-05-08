@@ -1,6 +1,6 @@
 create database MUSIC;
 use MUSIC;
-alter database MUSIC character set utf8 collate utf8_general_ci; --utf8 decode
+alter database MUSIC character set utf8 collate utf8_general_ci; 
 
 create table tacgia(
 	ma_tgia int(10) unsigned primary key,
@@ -58,4 +58,5 @@ insert into baiviet values(11, "Ôi Cuộc Sống Mến Thương", "Ôi Cuộc S
 insert into baiviet values(12, "Cây và gió", "Cây và gió", 7, "Em và anh, hai đứa quen nhau thật tình cờ. Lời hát của anh từ bài hát “Cây và gió” đã làm tâm hồn em xao động. Nhưng sự thật phũ phàng rằng em chưa bao giờ nói cho anh biết những suy nghĩ tận sâu trong tim mình. Bởi vì em nhút nhát, em không dám đối mặt với thực tế khắc nghiệt, hay thực ra em không dám đối diện với chính mình.", NULL, 7, "2013/12/5", NULL);
 
 alter table baiviet
-add fulltext(tieude); --fulltext match against
+add fulltext(tieude); 
+select * from baiviet;

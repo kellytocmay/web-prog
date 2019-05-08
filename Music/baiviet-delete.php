@@ -1,6 +1,6 @@
 <?php
   require 'data/connect-select-db.php';
-
+  include 'baiviet-search-func.php';
 
 
   $sql = "SELECT ma_bviet, tieude, ten_tgia, ngayviet, ten_bhat, ten_tloai, tomtat FROM baiviet b JOIN theloai th ON b.ma_tloai = th.ma_tloai JOIN tacgia t ON b.ma_tgia = t.ma_tgia";
@@ -12,15 +12,37 @@
     if (!$conn->query($d_query))
       echo "<h3>DELETE FAILED. " .mysql_error() . "</h3>";
     else
-      echo "Đã xóa";
+      echo "Đã xóa bài viết";
     $result = $conn->query($sql);
   }
   if ($result->num_rows > 0) {
 ?>
-<!DOCTYPE html>
 <html>
 <body>
+  <h1>Xóa bài viết</h1>
+    <hr>
+    <form name="s_form" action="baiviet-delete.php" method="post">
+        <input type="text" name="search_kw" id="search_kw" size="40"
+               value='<?php empty($_POST['search_kw']) || print $_POST['search_kw'];?>'>
+
+        <input type="submit" name="locbaiviet" value="Lọc bài viết">
+    </form>
 <?php
+  //count
+  if (isset($_POST['search_kw']))
+      $keyword = trim($_POST['search_kw']);
+  else
+      $keyword = '';
+      
+  $new_kw = str_replace(" ", "%' OR lower(tieude) LIKE '%", $keyword);
+  $query = "SELECT * FROM baiviet as bv, theloai as tl, tacgia as tg" .
+      " WHERE bv.ma_tloai=tl.ma_tloai AND bv.ma_tgia=tg.ma_tgia AND" .
+      " (tieude LIKE '%$new_kw%')";
+  $q_result = mysqli_query($conn,$query);
+
+  $row_count = mysqli_num_rows($q_result);
+  echo "<h2>Số bài viết: " . $row_count . "</h2>";
+
   while($row = $result->fetch_row()) {
 ?>
 <table>
@@ -63,7 +85,7 @@
   <tr>
     <td></td>
     <td>
-      <form class="" action="baiviet-delete.php" method="post">
+      <form class="" action="baiviet-delete.php" method="post" onsubmit="return confirm('Bạn chắc chắn muốn xóa bài viết?');">
         <input type='submit' value='Xóa bài viết'>
         <input type='hidden' name='ma_bviet_del' value="<?php echo $row[0] ?>">
       </form>
