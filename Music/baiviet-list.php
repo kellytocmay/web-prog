@@ -16,9 +16,9 @@
   </style>
   <body>
     <h2>Danh sách các bài viết</h2>
-    <?php
-      while($row = $result->fetch_row()) {
-    ?>
+<?php
+    while($row = $result->fetch_row()) {
+?>
     <table>
       <tr>
         <td class="title">Mã bài viết</td>
@@ -47,21 +47,20 @@
       <tr>
         <td class="title">Tóm tắt</td>
         <td>
-          <?php
-            $last = 49;
-            while (!ctype_space(mb_substr($row[6], $last, 1))) {
-              $last++;
-            }
-            echo mb_substr($row[6], 0, $last). "...";
-          ?>
+<?php
+      $last = 49;
+      while (!ctype_space(mb_substr($row[6], $last, 1))) {
+        $last++;
+      }
+      echo mb_substr($row[6], 0, $last). "...";
+?>
         </td>
       </tr>
-
       <hr>
-      <?php
-          }
-        }
-      ?>
+<?php
+    }
+  }
+?>
     </table>
   </body>
 </html>
