@@ -1,7 +1,5 @@
 <?php
   require 'data/connect-select-db.php';
-  include 'baiviet-search-func.php';
-
 
   $sql = "SELECT ma_bviet, tieude, ten_tgia, ngayviet, ten_bhat, ten_tloai, tomtat FROM baiviet b JOIN theloai th ON b.ma_tloai = th.ma_tloai JOIN tacgia t ON b.ma_tgia = t.ma_tgia";
   $result = $conn->query($sql);
@@ -12,7 +10,8 @@
     if (!$conn->query($d_query))
       echo "<h3>DELETE FAILED. " .mysql_error() . "</h3>";
     else
-      echo "Đã xóa bài viết";
+      echo "Đã xóa bài viết ";
+      echo $_POST['ten_bviet_del'];
     $result = $conn->query($sql);
   }
   if ($result->num_rows > 0) {
@@ -29,11 +28,22 @@
     </form>
 <?php
   //count
-  if (isset($_POST['search_kw']))
-      $keyword = trim($_POST['search_kw']);
+  if (isset($_POST['search_kw'])) {
+    $search_kw = $_POST['search_kw'];
+  }
+  else {
+    $search_kw = '';
+  }
+    include 'baiviet-search-func.php';
+    $result = search($search_kw);
+    if ($result->num_rows > 0) {
+    ?>
+      <h2>Số bài viết: <?php echo $result->num_rows ?></h2>
+    <?php
+/*      $keyword = trim($_POST['search_kw']);
   else
       $keyword = '';
-      
+
   $new_kw = str_replace(" ", "%' OR lower(tieude) LIKE '%", $keyword);
   $query = "SELECT * FROM baiviet as bv, theloai as tl, tacgia as tg" .
       " WHERE bv.ma_tloai=tl.ma_tloai AND bv.ma_tgia=tg.ma_tgia AND" .
@@ -41,10 +51,10 @@
   $q_result = mysqli_query($conn,$query);
 
   $row_count = mysqli_num_rows($q_result);
-  echo "<h2>Số bài viết: " . $row_count . "</h2>";
-
-  while($row = $result->fetch_row()) {
-?>
+  echo "<h2>Số bài viết: " . $row_count . "</h2>";*/
+    }
+      while($row = $result->fetch_row()) {
+    ?>
 <table>
   <tr>
     <td class="title">Mã bài viết</td>
@@ -88,6 +98,7 @@
       <form class="" action="baiviet-delete.php" method="post" onsubmit="return confirm('Bạn chắc chắn muốn xóa bài viết?');">
         <input type='submit' value='Xóa bài viết'>
         <input type='hidden' name='ma_bviet_del' value="<?php echo $row[0] ?>">
+        <input type='hidden' name='ten_bviet_del' value="<?php echo $row[1] ?>">
       </form>
     </td>
   </tr>

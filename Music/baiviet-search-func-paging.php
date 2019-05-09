@@ -2,13 +2,11 @@
   $record_page = 2;
 
   function compute_paging($search_kw) {
-    require 'data/connect-select-db.php';
+    include 'data/connect-select-db.php';
     global $record_page;
-    $query = "SELECT * FROM baiviet as bv, theloai as tl, tacgia as tg" .
-        " WHERE bv.ma_tloai=tl.ma_tloai AND bv.ma_tgia=tg.ma_tgia AND" .
-        " (tieude LIKE '%$search_kw%')";
-    $q_result = mysqli_query($conn,$query);
-//  $row = $result->fetch_row();
+    $query = "SELECT count(*) FROM baiviet b JOIN theloai th ON b.ma_tloai = th.ma_tloai JOIN tacgia t ON b.ma_tgia = t.ma_tgia WHERE MATCH(tieude) AGAINST('$search_kw' IN BOOLEAN MODE)";
+    $q_result = $conn->query($query) or die("Query failed: " . $conn->error);
+    $row = $q_result->fetch_row();
     $p_total = ceil($row[0]/$record_page);
     $page = (isset($_POST["page"]))? $_POST["page"] : 1;
     $start = ($page - 1) * $record_page;
@@ -20,10 +18,10 @@
   }
 
   function search($keyword) {
-    require 'data/connect-select-db.php';
+    include 'data/connect-select-db.php';
     global $record_page;
-    $search_kw = trim($keyword);
-    $paging = compute_paging($search_kw);
+    $keyword = trim($keyword);
+    $paging = compute_paging($keyword);
     $query = "SELECT ma_bviet, tieude, ten_tgia, ngayviet, ten_bhat, ten_tloai, tomtat FROM baiviet b JOIN theloai th ON b.ma_tloai = th.ma_tloai JOIN tacgia t ON b.ma_tgia = t.ma_tgia WHERE MATCH(tieude) AGAINST('$keyword' IN BOOLEAN MODE)"
             . "LIMIT $paging[p_start], $record_page";
 
@@ -46,6 +44,7 @@
 }
 
   function page_nav_links($paging, $search_kw) {
+    include 'data/connect-select-db.php';
     echo "Page $paging[p_no]/$paging[p_total]";
 
     if ($paging['p_pre'] > 0) {

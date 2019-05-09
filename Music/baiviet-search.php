@@ -18,11 +18,11 @@
     </form>
     <?php
       if (isset($_POST['search_kw'])) {
-        include 'baiviet-search-func.php';
-//        include 'baiviet-search-func-paging.php';
+//        include 'baiviet-search-func.php';
+        include 'baiviet-search-func-paging.php';
         $result = search($_POST['search_kw']);
         echo "<br><hr> ";
-//        page_nav_links($result, $_POST['search_kw']);
+        page_nav_links($result, $_POST['search_kw']);
         if ($result->num_rows > 0) {
         ?>
           <h3>Kết quả tìm kiếm: <?php echo $result->num_rows ?> bài viết</h3>
