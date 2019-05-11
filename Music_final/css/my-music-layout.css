@@ -1,0 +1,51 @@
+body {
+  background-image: url("https://sites.google.com/site/tcanvn/teaching/ct428-lap-trinh-web/resources/my-music-background.gif");
+}
+#main {
+  border: 10px solid white;
+  background-color: white;
+  width: 80%;
+  margin: auto;
+  background-image: url("https://sites.google.com/site/tcanvn/teaching/ct428-lap-trinh-web/resources/music-flower.jpg");
+}
+
+#bigtitle {
+  background-color: #A8F0F0;
+  text-align: right;
+}
+
+#title {
+  font-size: 14px;
+}
+
+.content {
+  border: 4px solid #C2E9E9;
+  border-radius: 15px;
+  background-color: #E8FBFB;
+  padding: 5px;
+  margin-top: 10px;
+  width:55%;
+  margin-left: 180px;
+}
+
+#list {
+  border: 4px solid #009097;
+  border-radius: 15px;
+  background-color: #A8F0F0;
+  padding: 5px;
+  margin-top: 10px;
+  width: 150px;
+  float: left;
+}
+
+.date {
+  border-bottom: 2px dashed blue;
+}
+
+.pic {
+  float: right;
+}
+
+.text {
+  text-align: justify;
+}

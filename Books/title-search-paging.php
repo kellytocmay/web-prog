@@ -7,7 +7,7 @@
   <body>
     <form class="" action="title-search-paging.php" method="POST">
       <input type="text" size="40" name="search_kw"
-        value='<?php empty($POST['search_kw']) ||
+        value='<?php empty($_POST['search_kw']) ||
         print $_POST['search_kw'];?>'>
     <input type="submit" value="Seach title">
     </form>

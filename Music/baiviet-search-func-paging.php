@@ -22,7 +22,8 @@
     global $record_page;
     $keyword = trim($keyword);
     $paging = compute_paging($keyword);
-    $query = "SELECT ma_bviet, tieude, ten_tgia, ngayviet, ten_bhat, ten_tloai, tomtat FROM baiviet b JOIN theloai th ON b.ma_tloai = th.ma_tloai JOIN tacgia t ON b.ma_tgia = t.ma_tgia WHERE MATCH(tieude) AGAINST('$keyword' IN BOOLEAN MODE)"
+    $pre_query = "SELECT ma_bviet, tieude, ten_tgia, ngayviet, ten_bhat, ten_tloai, tomtat  FROM baiviet b JOIN theloai th ON b.ma_tloai = th.ma_tloai JOIN tacgia t ON b.ma_tgia = t.ma_tgia WHERE MATCH(tieude) AGAINST('$keyword' IN BOOLEAN MODE)"
+    $query = "SELECT * FROM " . $pre_query . " WHERE MATCH(tieude) AGAINST('$keyword' IN BOOLEAN MODE)"
             . "LIMIT $paging[p_start], $record_page";
 
 //    $search_kw = trim($keyword);

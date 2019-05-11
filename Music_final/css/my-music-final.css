@@ -1,0 +1,138 @@
+body {
+	background-image: url("https://sites.google.com/site/tcanvn/teaching/ct428-lap-trinh-web/resources/my-music-background.gif");
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+
+#container {
+	background-color: white;
+	border: 10px white solid;
+	background-image: url("https://sites.google.com/site/tcanvn/teaching/ct428-lap-trinh-web/resources/music-flower.jpg");
+	overflow: auto;
+}
+
+.date {
+	border-bottom-style: dashed;
+	border-bottom-width: 2px;
+}
+
+.entry {
+	border: 4px #C2E9E9 solid;
+	border-radius: 15px;
+	padding: 10px;
+	background-color: #E8FBFB;
+	margin-top: 10px;
+	text-align: justify;
+   overflow: auto;
+}
+
+.entry img {
+	float: left;
+   width: 100px;
+   margin-right: 10px;
+}
+
+#header {
+	background-color: #A8F0F0;
+	text-align: right;
+}
+
+#bar {
+	height: 25px;
+	background-color: #FFEBCD;
+	text-align: right;
+	color: black;
+	padding-top: 5px;
+	padding-right: 5px;
+	font-style: italic;
+}
+
+#header h2 {
+	font-size: 14pt;
+}
+
+/* added this exercise */
+#navigation {
+	background-color: #99E0E0;
+	float: left;
+	margin-top: 10px;
+	width: 150px;
+	padding: 5px 5px 5px 15px;
+	border: 5px #009097 solid;
+	border-radius: 15px;
+}
+
+#allentries {
+	margin-left: 190px;
+	margin-top: 10px;
+}
+
+#footer {
+	font-style: italic;
+	color: gray;
+}
+
+#delform {
+	text-align: right;
+}
+
+.entry input {
+  font-size: 14pt;
+  size=140;
+  padding: 3pt;
+}
+
+.entry input[type="button"] {
+  -webkit-appearance: none;
+  width: 80pt;
+  font-size: 13pt;
+}
+
+
+.entry h2 {
+  /*border-top: 1pt solid gray;*/
+  padding-top: 10pt;
+}
+
+.s_entry {
+  margin: 30pt 10pt 20pt 30pt;
+}
+
+.s_title {
+  font-size: 14pt;
+  text-shadow: 2pt;
+  font-weight: bold;
+}
+
+.bhat_tloai {
+  color: #009097;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.s_subtitle {
+  /*font-weight: bold;
+  font-style: italic; */
+  color: #006e97;
+  opacity: 0.9;
+}
+
+.message {
+  color: red;
+  font-style: italic;
+}
+/*
+ <div class="search-entry">
+  <div class="search-title"><? echo $row['tieude'];?></div>
+  <div class="search-subtitle">
+    <span class="ngayviet"><? echo $row['ngayviet']; ?> </span>
+    <span class="tacgia"><? echo $row['ten_tgia']; ?></span>
+  </div>
+  <div class="search-tomtat">
+    <span class="baihat"><? echo $row['ten_bhat']; ?></span>
+    <span class="theloai"><? echo "(", $row['ten_tloai'], ")"; ?></span>
+    <span class="tomtat"><? echo $row['tomtat']; ?></span>
+  </div>
+</div>
+*/

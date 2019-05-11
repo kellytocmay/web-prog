@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Music is my life</title>
+  	<link rel="stylesheet" type="text/css" href="css/my-music-basic.css" />
+  	<link rel="stylesheet" type="text/css" href="css/my-music-layout.css" />
   </head>
   <style media="screen">
     td.title {text-align: right; padding-right: 15px}
@@ -10,7 +12,7 @@
   <body>
     <h2>Tìm kiếm bài viết</h2>
     <hr>
-    <form class="" action="baiviet-search.php" method="POST">
+    <form class="" action="baiviet-search.php" method="post">
       <input type="text" size="40" name="search_kw" value="<?php if (!empty($_POST['search_kw']))
         echo $_POST['search_kw'];?>"/>
       <input type="submit" value="Tìm kiếm">
@@ -18,11 +20,11 @@
     </form>
     <?php
       if (isset($_POST['search_kw'])) {
-//        include 'baiviet-search-func.php';
-        include 'baiviet-search-func-paging.php';
+        include 'baiviet-search-func.php';
+//        include 'baiviet-search-func-paging.php';
         $result = search($_POST['search_kw']);
         echo "<br><hr> ";
-        page_nav_links($result, $_POST['search_kw']);
+//        page_nav_links($result, $_POST['search_kw']);
         if ($result->num_rows > 0) {
         ?>
           <h3>Kết quả tìm kiếm: <?php echo $result->num_rows ?> bài viết</h3>
